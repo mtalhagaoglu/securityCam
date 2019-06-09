@@ -29,4 +29,4 @@ recognizer.train(faces, np.array(Ids))
 recognizer.save('trainer/trainer.yml')
 
 
-print("İşlem Tamamlandı")
+print("Process Completed")

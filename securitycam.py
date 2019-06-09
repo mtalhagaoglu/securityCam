@@ -13,7 +13,7 @@ faceCascade = cv2.CascadeClassifier(cascadePath)
 ######
 cam = cv2.VideoCapture(0)
 
-def activityDetection():
+def activityDetection(time):
     key = 1
     while True:
         print("detection is workin")
@@ -23,24 +23,21 @@ def activityDetection():
             cv2.imwrite("motion/control.jpg",control)
             cv2.imwrite("motion/now.jpg", im)
             key = 0
-        #ret, im2 = cam.read()
-        #cv2.imshow("Video", im2)
         cv2.imwrite("motion/now.jpg", im)
         now = cv2.imread("motion/now.jpg", 0)
         similarity = cv2.matchTemplate(control, now, cv2.TM_CCOEFF_NORMED)
         print("Similarity:  " + str(similarity[0][0]))
         if (similarity[0][0] >= 0.93):
             print("Safe")
-            #list.append(0)
         else:
-            print("Odada Hareket tespit edildi")
+            print("unSafe")
             cv2.imwrite("motion/UFO.jpg",now)
             ########
             confirmation = 0
             unknownCounter = 0
             w = time.time()
             q = w
-            print("cam is working")
+            print("Face Detection is working")
             while True:
                 ret, im = cam.read()
                 gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
@@ -71,14 +68,14 @@ def activityDetection():
                     calendar = str(time.localtime()[0]) + "." + str(time.localtime()[1]) + "." + str(time.localtime()[2])
                     cv2.imwrite("unknown/" + calendar + ".jpg",im)
                     gmail.send_mail(calendar)
-                    print("cam stop")
+                    print("Face Detection stop")
                     break
                 if cv2.waitKey(10) & 0xFF == ord('q'):
                     break
             ########
-        print("detection sleep for 10 seconds")
-        sleep(10)
+        print("Motion Detection sleep for"+ str(time) + "seconds")
+        sleep(time)
 
 
 
-activityDetection()
+activityDetection(time)

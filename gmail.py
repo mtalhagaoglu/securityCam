@@ -14,7 +14,7 @@ def send_mail(file_name):
     msg['To'] = toaddr
     msg['Subject'] = "unknown person"
 
-    body = "i cant recocnize this preson"
+    body = "i do not know this person"
 
     msg.attach(MIMEText(body, 'plain'))
 

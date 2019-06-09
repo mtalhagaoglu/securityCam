@@ -39,6 +39,8 @@ while (True):
     elif sampleNum > 20:
         break
 
+        
+print("do not forget run trainer.py for saving your face")
 
 cam.release()
 cv2.destroyAllWindows()

@@ -13,7 +13,7 @@ faceCascade = cv2.CascadeClassifier(cascadePath)
 ######
 cam = cv2.VideoCapture(0)
 
-def activityDetection(time):
+def activityDetection(second):
     key = 1
     while True:
         print("detection is workin")
@@ -55,7 +55,6 @@ def activityDetection(time):
                         name = "Unknown"
                         unknownCounter = unknownCounter + 1
                         print("Unknown")
-                        ##time.sleep(1)
                     cv2.putText(im, str(name), (x, y + h), cv2.FONT_HERSHEY_COMPLEX, 2, (255, 0, 0), 2)
                 ##cv2.imshow('SecurityCam',im)
                 if confirmation >= 10 and str(camm.user(Id)) == camm.user(Id):
@@ -73,9 +72,9 @@ def activityDetection(time):
                 if cv2.waitKey(10) & 0xFF == ord('q'):
                     break
             ########
-        print("Motion Detection sleep for"+ str(time) + "seconds")
-        sleep(time)
+        print("Motion Detection sleep for "+ str(second) + " seconds")
+        sleep(second)
 
 
 
-activityDetection(time)
+activityDetection(ENTER SLEEP TIME HERE)
